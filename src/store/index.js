@@ -6,5 +6,10 @@ export const store = reactive ({
         key: '0202b8d2e8808e5698fe97bebe498b53',
     },
 
-    foundMovies: []
+    foundMovies: [],
+
+    flag: {
+        uri: 'https://flagsapi.com/',
+        style: '/flat/64.png'
+    }
 })
