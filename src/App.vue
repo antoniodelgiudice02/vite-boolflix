@@ -10,21 +10,38 @@ export default {
       store,
 
     }
-      
+
   },
 
   methods: {
     searchMovie() {
-      axios.get(store.api.uri, {
+      axios.get(store.api.moviesUri, {
         params: {
           query: store.api.query,
           api_key: store.api.key
         }
-        
+
       }).then((response) => {
         store.foundMovies = response.data.results
         console.log(response.data.results)
       })
+    },
+    searchSerie() {
+      axios.get(store.api.seriesUri, {
+        params: {
+          query: store.api.query,
+          api_key: store.api.key
+        }
+
+      }).then((response) => {
+        store.foundSeries = response.data.results
+        console.log(response.data.results)
+      })
+    },
+
+    fetch(){
+      // this.searchMovie(),
+      this.searchSerie()
     }
   },
 
@@ -33,7 +50,7 @@ export default {
 </script>
 
 <template>
-  <app-header @search="searchMovie"></app-header>
+  <app-header @search="fetch"></app-header>
   <app-main></app-main>
 </template>
 
