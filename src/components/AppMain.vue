@@ -32,6 +32,7 @@ export default {
     <ul v-for="movie in store.foundMovies">
       <li>{{ movie.title }}</li>
       <li>{{ movie.original_title }}</li>
+      <li><img :src="store.api.posterUri + store.api.posterSize + movie.poster_path" alt=""></li>
       <li><img :src="store.flag.uri + fixedLang(movie.original_language).toUpperCase() + store.flag.style" alt=""></li>
       <li>{{ movie.vote_average }}</li>
     </ul>
@@ -39,6 +40,7 @@ export default {
     <ul v-for="serie in store.foundSeries">
       <li>{{ serie.name }}</li>
       <li>{{ serie.original_name }}</li>
+      <li><img :src="store.api.posterUri + store.api.posterSize + serie.poster_path" alt=""></li>
       <li><img :src="store.flag.uri + fixedLang(serie.original_language).toUpperCase() + store.flag.style" alt=""></li>
       <li>{{ serie.vote_average }}</li>
     </ul>

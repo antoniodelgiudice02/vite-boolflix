@@ -40,7 +40,7 @@ export default {
     },
 
     fetch(){
-      // this.searchMovie(),
+      this.searchMovie(),
       this.searchSerie()
     }
   },
