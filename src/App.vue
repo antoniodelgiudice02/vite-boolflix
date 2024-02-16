@@ -22,8 +22,20 @@ export default {
         }
 
       }).then((response) => {
-        store.foundMovies = response.data.results
-        console.log(response.data.results)
+
+        const moviesArray = response.data.results
+
+        store.foundMovies = moviesArray.map((movie) => {
+          return {
+            title: movie.title,
+            originalTitle: movie.original_title,
+            poster: movie.poster_path,
+            language: movie.original_language,
+            vote: movie.vote_average
+          }
+        })
+        
+
       })
     },
     searchSerie() {
@@ -34,14 +46,26 @@ export default {
         }
 
       }).then((response) => {
-        store.foundSeries = response.data.results
-        console.log(response.data.results)
+
+        const seriesArray = response.data.results
+
+        store.foundSeries = seriesArray.map((serie) => {
+          return {
+            title: serie.name,
+            originalTitle: serie.original_name,
+            poster: serie.poster_path,
+            language: serie.original_language,
+            vote: serie.vote_average
+          }
+        })
+        
+        console.log(store.foundSeries)
       })
     },
 
-    fetch(){
+    fetch() {
       this.searchMovie(),
-      this.searchSerie()
+        this.searchSerie()
     }
   },
 

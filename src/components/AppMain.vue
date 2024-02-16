@@ -1,5 +1,5 @@
 <script>
-import {store} from '../store'
+import { store } from '../store'
 
 export default {
   data() {
@@ -9,15 +9,20 @@ export default {
   },
 
   methods: {
-    fixedLang(movieLang){
-      if (movieLang == 'en'){
+    fixedLang(movieLang) {
+      if (movieLang == 'en') {
         movieLang = 'GB'
-      } else if (movieLang == 'ja'){
+      } else if (movieLang == 'ja') {
         movieLang = 'JP'
-      } else{
+      } else {
         movieLang = movieLang
       }
       return movieLang;
+    },
+
+    everageVote(vote) {
+      
+      return Math.floor(vote / 2)
     }
   }
 
@@ -26,27 +31,25 @@ export default {
 </script>
 
 <template>
-
   <div class="m-5">
 
     <ul v-for="movie in store.foundMovies">
       <li>{{ movie.title }}</li>
-      <li>{{ movie.original_title }}</li>
-      <li><img :src="store.api.posterUri + store.api.posterSize + movie.poster_path" alt=""></li>
-      <li><img :src="store.flag.uri + fixedLang(movie.original_language).toUpperCase() + store.flag.style" alt=""></li>
-      <li>{{ movie.vote_average }}</li>
+      <li>{{ movie.originalTitle }}</li>
+      <li><img :src="store.api.posterUri + store.api.posterSize + movie.poster" alt=""></li>
+      <li><img :src="store.flag.uri + fixedLang(movie.language).toUpperCase() + store.flag.style" alt=""></li>
+      <li>{{ everageVote(movie.vote) }}</li>
     </ul>
 
     <ul v-for="serie in store.foundSeries">
-      <li>{{ serie.name }}</li>
-      <li>{{ serie.original_name }}</li>
-      <li><img :src="store.api.posterUri + store.api.posterSize + serie.poster_path" alt=""></li>
-      <li><img :src="store.flag.uri + fixedLang(serie.original_language).toUpperCase() + store.flag.style" alt=""></li>
-      <li>{{ serie.vote_average }}</li>
+      <li>{{ serie.title }}</li>
+      <li>{{ serie.originalTitle }}</li>
+      <li><img :src="store.api.posterUri + store.api.posterSize + serie.poster" alt=""></li>
+      <li><img :src="store.flag.uri + fixedLang(serie.language).toUpperCase() + store.flag.style" alt=""></li>
+      <li>{{ everageVote(serie.vote) }}</li>
     </ul>
 
   </div>
-
 </template>
 
 <style lang="scss" scoped></style>
