@@ -5,6 +5,8 @@ export default {
   data() {
     return {
       store,
+      starSolid: 'fa-solid fa-star',
+      starRegular: 'fa-regular fa-star',
     }
   },
 
@@ -38,7 +40,9 @@ export default {
       <li>{{ movie.originalTitle }}</li>
       <li><img :src="store.api.posterUri + store.api.posterSize + movie.poster" alt=""></li>
       <li><img :src="store.flag.uri + fixedLang(movie.language).toUpperCase() + store.flag.style" alt=""></li>
-      <li>{{ everageVote(movie.vote) }}</li>
+      <li>{{ everageVote(movie.vote) }}
+        <font-awesome-icon v-for="star in 5" :icon="(star <= everageVote(movie.vote)) ? starSolid : starRegular"/>
+      </li>
     </ul>
 
     <ul v-for="serie in store.foundSeries">
