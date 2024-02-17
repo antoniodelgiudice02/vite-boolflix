@@ -1,12 +1,14 @@
 <script>
 import { store } from '../store'
+import MovieCard from './MovieCard.vue'
+import SerieCard from './SerieCard.vue'
 
 export default {
   data() {
     return {
       store,
-      starSolid: 'fa-solid fa-star',
-      starRegular: 'fa-regular fa-star',
+      
+      
     }
   },
 
@@ -25,35 +27,49 @@ export default {
     everageVote(vote) {
       
       return Math.floor(vote / 2)
-    }
-  }
+    },
+
+    // defaultPoster(poster){
+    //   if(poster === null){
+
+    //   }
+    // }
+  },
+
+  components: { MovieCard, SerieCard }
 
 }
 
 </script>
 
 <template>
-  <div class="m-5">
+  <main class="m-5">
 
-    <ul v-for="movie in store.foundMovies">
-      <li>{{ movie.title }}</li>
-      <li>{{ movie.originalTitle }}</li>
-      <li><img :src="store.api.posterUri + store.api.posterSize + movie.poster" alt=""></li>
-      <li><img :src="store.flag.uri + fixedLang(movie.language).toUpperCase() + store.flag.style" alt=""></li>
-      <li>{{ everageVote(movie.vote) }}
-        <font-awesome-icon v-for="star in 5" :icon="(star <= everageVote(movie.vote)) ? starSolid : starRegular"/>
-      </li>
-    </ul>
+    <movie-card v-for="movie in store.foundMovies"
+    :titleMovie="movie.title"
+    :originalTitleMovie="movie.originalTitle"
+    :posterMovie="movie.poster"
+    :languageMovie="fixedLang(movie.language).toUpperCase()"
+    :voteMovie="everageVote(movie.vote)"
+    ></movie-card>
 
-    <ul v-for="serie in store.foundSeries">
-      <li>{{ serie.title }}</li>
-      <li>{{ serie.originalTitle }}</li>
-      <li><img :src="store.api.posterUri + store.api.posterSize + serie.poster" alt=""></li>
-      <li><img :src="store.flag.uri + fixedLang(serie.language).toUpperCase() + store.flag.style" alt=""></li>
-      <li>{{ everageVote(serie.vote) }}</li>
-    </ul>
+    <serie-card v-for="serie in store.foundSeries"
+    :titleSerie="serie.title"
+    :originalTitleSerie="serie.originalTitle"
+    :posterSerie="serie.poster"
+    :languageSerie="fixedLang(serie.language).toUpperCase()"
+    :voteSerie="everageVote(serie.vote)"
+    ></serie-card>
 
-  </div>
+  </main>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+  main{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+</style>
