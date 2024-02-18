@@ -7,8 +7,8 @@ export default {
   data() {
     return {
       store,
-      
-      
+
+
     }
   },
 
@@ -25,7 +25,7 @@ export default {
     },
 
     everageVote(vote) {
-      
+
       return Math.floor(vote / 2)
     },
 
@@ -43,33 +43,59 @@ export default {
 </script>
 
 <template>
-  <main class="m-5">
+  <main>
 
-    <movie-card v-for="movie in store.foundMovies"
-    :titleMovie="movie.title"
-    :originalTitleMovie="movie.originalTitle"
-    :posterMovie="movie.poster"
-    :languageMovie="fixedLang(movie.language).toUpperCase()"
-    :voteMovie="everageVote(movie.vote)"
-    ></movie-card>
+    <div class="container">
 
-    <serie-card v-for="serie in store.foundSeries"
-    :titleSerie="serie.title"
-    :originalTitleSerie="serie.originalTitle"
-    :posterSerie="serie.poster"
-    :languageSerie="fixedLang(serie.language).toUpperCase()"
-    :voteSerie="everageVote(serie.vote)"
-    ></serie-card>
+      <div class="h1">Movies</div>
+      <div class="card-container">
+
+        <movie-card v-for="movie in store.foundMovies" :titleMovie="movie.title" :originalTitleMovie="movie.originalTitle"
+          :posterMovie="movie.poster" :languageMovie="fixedLang(movie.language).toUpperCase()"
+          :voteMovie="everageVote(movie.vote)"></movie-card>
+
+      </div>
+
+      <div class="h1">Series</div>
+
+      <div class="card-container">
+
+        <serie-card v-for="serie in store.foundSeries" :titleSerie="serie.title" :originalTitleSerie="serie.originalTitle"
+          :posterSerie="serie.poster" :languageSerie="fixedLang(serie.language).toUpperCase()"
+          :voteSerie="everageVote(serie.vote)"></serie-card>
+
+      </div>
+
+    </div>
 
   </main>
 </template>
 
 <style lang="scss" scoped>
+main {
 
-  main{
+  background-color: rgb(50, 50, 50);
+
+  .container {
+
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
+    flex-direction: column;
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+
+    .h1{
+      color: white;
+      font-weight: bold;
+      font-size: 2rem;
+    }
   }
 
+
+
+}
 </style>

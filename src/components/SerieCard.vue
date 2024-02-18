@@ -5,6 +5,7 @@ export default {
     data() {
         return {
             store,
+            defaultLang: '?'
         }
     },
 
@@ -20,39 +21,35 @@ export default {
 </script>
 
 <template>
+
     <div class="card">
 
         <div class="poster">
-            <div>
-                <img :src="store.api.posterUri + store.api.posterSize + posterSerie" alt="">
+            <img :src="store.api.posterUri + store.api.posterSize + posterSerie" alt="">
+            <div class="info-card">
+
+                <div class="title">
+
+                    <h1> {{ titleSerie }}</h1>
+
+                    <h2>{{ originalTitleSerie }}</h2>
+
+                </div>
+
+                <div class="language">
+                    <img :src="store.flag.uri + languageSerie + store.flag.style" alt="">
+                </div>
+
+                <div class="vote">
+                    <font-awesome-icon v-for="star in 5"
+                        :icon="(star <= voteSerie) ? 'fa-solid fa-star' : 'fa-regular fa-star'" />
+                </div>
+
             </div>
-        </div>
-
-        <div class="title">
-
-            <div>
-                <span> {{ titleSerie }}</span>
-            </div>
-
-            <div>
-                <span>{{ originalTitleSerie }}</span>
-            </div>
-
-        </div>
-
-        <div class="language">
-            <img :src="store.flag.uri + languageSerie + store.flag.style" alt="">
-        </div>
-
-        <div class="vote">
-            <font-awesome-icon v-for="star in 5" :icon="(star <= voteSerie) ? 'fa-solid fa-star' : 'fa-regular fa-star'" />
         </div>
 
 
     </div>
 </template>
 
-<style lang="scss" scoped>
-
-
-</style>
+<style lang="scss" scoped></style>

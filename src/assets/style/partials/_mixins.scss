@@ -1,7 +1,64 @@
-@mixin card(){
-    width: calc(100vw / 4 - 50px);
+@mixin card() {
+  width: calc(100% / 5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: none;
+  margin: 10px 0;
+  background-color: inherit;
+
+  &:hover {
+    position: relative;
+
+    .poster {
+      position: absolute;
+      width: 300px;
+      height: 450px;
+      z-index: 1;
+
+      .info-card {
+        display: flex;
+      }
+    }
+  }
+
+  .title {
+    h1,
+    h2 {
+      font-size: 1rem;
+    }
+  }
+
+  .info-card {
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
+    width: 100%;
+    background-color: rgb(56, 56, 56, 0.65);
+    position: absolute;
+    bottom: 0;
+    padding: 10px;
+    color: white;
+    height: 150px;
+    max-height: 150px;
+    gap: 8px;
+    display: none;
+
+    .language{
+        width: 15%;
+        height: 20%;
+    }
+}
+}
+
+@mixin poster() {
+  width: 185px;
+  height: 259px;
+  background-color: grey;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }

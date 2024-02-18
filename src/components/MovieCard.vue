@@ -5,6 +5,7 @@ export default {
     data() {
         return {
             store,
+            defaultLang: '?'
         }
     },
 
@@ -23,33 +24,29 @@ export default {
     <div class="card">
 
         <div class="poster">
-            <div>
-                <img :src="store.api.posterUri + store.api.posterSize + posterMovie" alt="">
+            <img :src="store.api.posterUri + store.api.posterSize + posterMovie" alt="">
+            <div class="info-card">
+                <div class="title">
+
+                    <h1> {{ titleMovie }}</h1>
+                    <h2>{{ originalTitleMovie }}</h2>
+
+                </div>
+
+                <div class="language">
+                    <img :src="store.flag.uri + languageMovie + store.flag.style" alt="">
+                </div>
+
+                <div class="vote">
+                    <font-awesome-icon v-for="star in 5"
+                        :icon="(star <= voteMovie) ? 'fa-solid fa-star' : 'fa-regular fa-star'" />
+                </div>
             </div>
-        </div>
-
-        <div class="title">
-
-            <div>
-                <span> {{ titleMovie }}</span>
-            </div>
-
-            <div>
-                <span>{{ originalTitleMovie }}</span>
-            </div>
-
-        </div>
-
-        <div class="language">
-            <img :src="store.flag.uri + languageMovie + store.flag.style" alt="">
-        </div>
-
-        <div class="vote">
-            <font-awesome-icon v-for="star in 5" :icon="(star <= voteMovie) ? 'fa-solid fa-star' : 'fa-regular fa-star'" />
         </div>
 
 
     </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>

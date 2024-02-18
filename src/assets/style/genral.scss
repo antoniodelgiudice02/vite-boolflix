@@ -12,3 +12,7 @@
 .card{
     @include card()
 }
+
+.poster{
+    @include poster()
+}
